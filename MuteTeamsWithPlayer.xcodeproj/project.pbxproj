@@ -11,6 +11,7 @@
 		DE45886A26CA636500C2917F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE45886926CA636500C2917F /* ContentView.swift */; };
 		DE45886C26CA636700C2917F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE45886B26CA636700C2917F /* Assets.xcassets */; };
 		DE45886F26CA636700C2917F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE45886E26CA636700C2917F /* Preview Assets.xcassets */; };
+		DE45887826CA663D00C2917F /* NowPlayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE45887726CA663D00C2917F /* NowPlayable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		DE45886E26CA636700C2917F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DE45887026CA636700C2917F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE45887126CA636700C2917F /* MuteTeamsWithPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MuteTeamsWithPlayer.entitlements; sourceTree = "<group>"; };
+		DE45887726CA663D00C2917F /* NowPlayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			children = (
 				DE45886726CA636500C2917F /* MuteTeamsWithPlayerApp.swift */,
 				DE45886926CA636500C2917F /* ContentView.swift */,
+				DE45887726CA663D00C2917F /* NowPlayable.swift */,
 				DE45886B26CA636700C2917F /* Assets.xcassets */,
 				DE45887026CA636700C2917F /* Info.plist */,
 				DE45887126CA636700C2917F /* MuteTeamsWithPlayer.entitlements */,
@@ -140,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE45887826CA663D00C2917F /* NowPlayable.swift in Sources */,
 				DE45886A26CA636500C2917F /* ContentView.swift in Sources */,
 				DE45886826CA636500C2917F /* MuteTeamsWithPlayerApp.swift in Sources */,
 			);

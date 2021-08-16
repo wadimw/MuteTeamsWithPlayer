@@ -8,9 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var registered = false
+    let app = MuteTeamsWithPlayerApp.shared
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        Button(registered ? "Deregister" : "Register") {
+            if !registered {
+                app.nowPlayable.register()
+            } else {
+                app.nowPlayable.deregister()
+            }
+            registered = app.nowPlayable.isRegistered
+        }.padding()
     }
 }
 
