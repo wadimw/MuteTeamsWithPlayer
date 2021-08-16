@@ -12,6 +12,9 @@
 		DE45886C26CA636700C2917F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE45886B26CA636700C2917F /* Assets.xcassets */; };
 		DE45886F26CA636700C2917F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE45886E26CA636700C2917F /* Preview Assets.xcassets */; };
 		DE45887826CA663D00C2917F /* NowPlayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE45887726CA663D00C2917F /* NowPlayable.swift */; };
+		DE45887A26CABB4C00C2917F /* CallStateMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE45887926CABB4C00C2917F /* CallStateMonitor.swift */; };
+		DEB76A5626CAD767001CE0D1 /* FileMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB76A5526CAD767001CE0D1 /* FileMonitor.swift */; };
+		DEB76A5826CB063F001CE0D1 /* KeypressEmulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB76A5726CB063F001CE0D1 /* KeypressEmulator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,9 @@
 		DE45887026CA636700C2917F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE45887126CA636700C2917F /* MuteTeamsWithPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MuteTeamsWithPlayer.entitlements; sourceTree = "<group>"; };
 		DE45887726CA663D00C2917F /* NowPlayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayable.swift; sourceTree = "<group>"; };
+		DE45887926CABB4C00C2917F /* CallStateMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallStateMonitor.swift; sourceTree = "<group>"; };
+		DEB76A5526CAD767001CE0D1 /* FileMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileMonitor.swift; sourceTree = "<group>"; };
+		DEB76A5726CB063F001CE0D1 /* KeypressEmulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypressEmulator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +63,10 @@
 			children = (
 				DE45886726CA636500C2917F /* MuteTeamsWithPlayerApp.swift */,
 				DE45886926CA636500C2917F /* ContentView.swift */,
+				DE45887926CABB4C00C2917F /* CallStateMonitor.swift */,
+				DEB76A5526CAD767001CE0D1 /* FileMonitor.swift */,
 				DE45887726CA663D00C2917F /* NowPlayable.swift */,
+				DEB76A5726CB063F001CE0D1 /* KeypressEmulator.swift */,
 				DE45886B26CA636700C2917F /* Assets.xcassets */,
 				DE45887026CA636700C2917F /* Info.plist */,
 				DE45887126CA636700C2917F /* MuteTeamsWithPlayer.entitlements */,
@@ -143,7 +152,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE45887A26CABB4C00C2917F /* CallStateMonitor.swift in Sources */,
 				DE45887826CA663D00C2917F /* NowPlayable.swift in Sources */,
+				DEB76A5826CB063F001CE0D1 /* KeypressEmulator.swift in Sources */,
+				DEB76A5626CAD767001CE0D1 /* FileMonitor.swift in Sources */,
 				DE45886A26CA636500C2917F /* ContentView.swift in Sources */,
 				DE45886826CA636500C2917F /* MuteTeamsWithPlayerApp.swift in Sources */,
 			);

@@ -7,10 +7,15 @@
 
 import Foundation
 import MediaPlayer
+import SwiftUI
 
-class NowPlayable {
+class NowPlayable : ObservableObject {
     let remoteCommandCenter = MPRemoteCommandCenter.shared()
     let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
+    
+    weak var delegate : NowPlayableDelegate?
+    
+    @Published private(set) var isRegistered = false
     
     // Commands that are not used
     var disabledCommands : [MPRemoteCommand] { return [
@@ -44,28 +49,23 @@ class NowPlayable {
         remoteCommandCenter.togglePlayPauseCommand
     ] }
     
-    var isRegistered = false
+    let nowPlayingInfo : [String : Any] = [
+        MPNowPlayingInfoPropertyIsLiveStream : true,
+        MPMediaItemPropertyTitle : "MS Teams Ongoing Call"
+    ]
     
     // Make app show in Now Playing menu and register for remote commands
     func register() {
         guard isRegistered == false else { return }
-        
-        print("registering now playable")
         // set all unused commands to disabled
         disabledCommands.forEach({$0.isEnabled = false})
         // register handler for all used commands
         enabledCommands.forEach() {
-            $0.addTarget() { remoteCommandEvent in
-                print("Command received: \(remoteCommandEvent.description)")
-                return .success
-            }
+            $0.removeTarget(nil) // remove all targets previously assigned to this command
+            $0.addTarget() { return self.handleEvent($0) }
             $0.isEnabled = true
         }
         // Set metadata and state as Now Playing
-        let nowPlayingInfo : [String : Any] = [
-            MPNowPlayingInfoPropertyIsLiveStream : true,
-            MPMediaItemPropertyTitle : "MS Teams ongoing call"
-        ]
         nowPlayingInfoCenter.nowPlayingInfo = nowPlayingInfo
         nowPlayingInfoCenter.playbackState = .playing
         // Save state
@@ -74,8 +74,6 @@ class NowPlayable {
     
     func deregister() {
         guard isRegistered == true else { return }
-        
-        print("deregistering now playable")
         // deregister all handlers for used commands
         enabledCommands.forEach() {
             $0.removeTarget(nil) // remove all targets
@@ -87,4 +85,13 @@ class NowPlayable {
         isRegistered = false
     }
     
+    func handleEvent(_ remoteCommandEvent : MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
+        self.delegate?.didReceiveEvent()
+        return .success
+    }
+    
+}
+
+protocol NowPlayableDelegate : AnyObject {
+    func didReceiveEvent()
 }
