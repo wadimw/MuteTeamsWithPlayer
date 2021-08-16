@@ -14,6 +14,8 @@ final class CallStateMonitor : ObservableObject, FileMonitorDelegate {
     @Published private(set) var isMonitored = false
     @Published private(set) var isOngoing = false
     
+    weak var delegate : CallStateMonitorDelegate?
+    
     init(log logUrl : URL) {
         self.logUrl = logUrl
     }
@@ -39,6 +41,7 @@ final class CallStateMonitor : ObservableObject, FileMonitorDelegate {
     func didReceive(changes: String) {
         // if parsing fails, state is left as is
         try? parseLastCallState(from: changes)
+        delegate?.stateDidChange(isOngoing)
     }
     
     /// Searching from the end of provided log chunk, look for last occurrence`isOngoing: true/false` strings which indicates call state change
@@ -61,6 +64,10 @@ final class CallStateMonitor : ObservableObject, FileMonitorDelegate {
         stopMonitoring()
         startMonitoring()
     }
+}
+
+protocol CallStateMonitorDelegate : AnyObject {
+    func stateDidChange(_ ongoing : Bool)
 }
 
 enum CallStateMonitorError : LocalizedError {

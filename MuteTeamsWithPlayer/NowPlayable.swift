@@ -9,7 +9,7 @@ import Foundation
 import MediaPlayer
 import SwiftUI
 
-class NowPlayable : ObservableObject {
+class NowPlayable : ObservableObject, CallStateMonitorDelegate {
     let remoteCommandCenter = MPRemoteCommandCenter.shared()
     let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
     
@@ -88,6 +88,10 @@ class NowPlayable : ObservableObject {
     func handleEvent(_ remoteCommandEvent : MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
         self.delegate?.didReceiveEvent()
         return .success
+    }
+    
+    func stateDidChange(_ ongoing: Bool) {
+        ongoing ? register() : deregister()
     }
     
 }

@@ -9,7 +9,7 @@ import Foundation
 
 class KeypressEmulator : NowPlayableDelegate {
     func sendKeypress() {
-        
+        print("Keypress")
     }
     
     func didReceiveEvent() {

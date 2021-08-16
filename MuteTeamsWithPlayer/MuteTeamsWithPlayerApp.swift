@@ -26,7 +26,19 @@ struct MuteTeamsWithPlayerApp: App {
     
     init() {
         nowPlayable.delegate = keypressEmulator
-        if (shouldIntercept) { callStateMonitor.startMonitoring() }
+        if (shouldIntercept) {
+            startIntercepting()
+        }
+    }
+    
+    func startIntercepting() {
+        callStateMonitor.delegate = nowPlayable
+        callStateMonitor.startMonitoring()
+    }
+    
+    func stopIntercepting() {
+        callStateMonitor.stopMonitoring()
+        callStateMonitor.delegate = nil
     }
     
     var body: some Scene {
@@ -35,10 +47,7 @@ struct MuteTeamsWithPlayerApp: App {
                 .environmentObject(nowPlayable)
                 .environmentObject(callStateMonitor)
                 .onChange(of: shouldIntercept) {
-                    $0 ? callStateMonitor.startMonitoring() : callStateMonitor.stopMonitoring()
-                }
-                .onChange(of: callStateMonitor.isOngoing) {
-                    $0 ? nowPlayable.register() : nowPlayable.deregister()
+                    $0 ? startIntercepting() : stopIntercepting()
                 }
         }
     }
