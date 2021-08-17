@@ -19,6 +19,9 @@ struct ContentView: View {
             Text("Teams log monitored: \(callStateMonitor.isMonitored.description)")
             Text("Call ongoing: \(callStateMonitor.isOngoing.description)")
             Text("Registered as Now Playing: \(nowPlayable.isRegistered.description)")
+            Button("Manually toggle Now Playing") {
+                nowPlayable.stateDidChange(!nowPlayable.isRegistered)
+            }.padding()
         }.padding()
     }
 }

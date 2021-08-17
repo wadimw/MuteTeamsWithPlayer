@@ -10,15 +10,15 @@ import MediaPlayer
 import SwiftUI
 
 class NowPlayable : ObservableObject, CallStateMonitorDelegate {
-    let remoteCommandCenter = MPRemoteCommandCenter.shared()
-    let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
+    private let remoteCommandCenter = MPRemoteCommandCenter.shared()
+    private let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
     
     weak var delegate : NowPlayableDelegate?
     
     @Published private(set) var isRegistered = false
     
     // Commands that are not used
-    var disabledCommands : [MPRemoteCommand] { return [
+    private var disabledCommands : [MPRemoteCommand] { return [
 //            remoteCommandCenter.pauseCommand,
 //            remoteCommandCenter.playCommand,
 //            remoteCommandCenter.stopCommand,
@@ -42,20 +42,20 @@ class NowPlayable : ObservableObject, CallStateMonitorDelegate {
     ] }
     
     // Commands that are intercepted
-    var enabledCommands : [MPRemoteCommand] { return [
+    private var enabledCommands : [MPRemoteCommand] { return [
         remoteCommandCenter.pauseCommand,
         remoteCommandCenter.playCommand,
         remoteCommandCenter.stopCommand,
         remoteCommandCenter.togglePlayPauseCommand
     ] }
     
-    let nowPlayingInfo : [String : Any] = [
+    private let nowPlayingInfo : [String : Any] = [
         MPNowPlayingInfoPropertyIsLiveStream : true,
         MPMediaItemPropertyTitle : "MS Teams Ongoing Call"
     ]
     
     // Make app show in Now Playing menu and register for remote commands
-    func register() {
+    private func register() {
         guard isRegistered == false else { return }
         // set all unused commands to disabled
         disabledCommands.forEach({$0.isEnabled = false})
@@ -72,7 +72,7 @@ class NowPlayable : ObservableObject, CallStateMonitorDelegate {
         isRegistered = true
     }
     
-    func deregister() {
+    private func deregister() {
         guard isRegistered == true else { return }
         // deregister all handlers for used commands
         enabledCommands.forEach() {
@@ -85,8 +85,8 @@ class NowPlayable : ObservableObject, CallStateMonitorDelegate {
         isRegistered = false
     }
     
-    func handleEvent(_ remoteCommandEvent : MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
-        self.delegate?.didReceiveEvent()
+    private func handleEvent(_ remoteCommandEvent : MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus {
+        self.delegate?.didReceiveCommand()
         return .success
     }
     
@@ -97,5 +97,5 @@ class NowPlayable : ObservableObject, CallStateMonitorDelegate {
 }
 
 protocol NowPlayableDelegate : AnyObject {
-    func didReceiveEvent()
+    func didReceiveCommand()
 }
